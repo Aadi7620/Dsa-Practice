@@ -53,15 +53,14 @@ void pop_back(){
     if(head == NULL){
         cout<<"list is empty";
         return;
-    }else{
+    }
         node*temp = head;
         while(temp->next != tail){
             temp = temp->next;
         }
         delete tail;
         tail = temp;
-        tail->next = NULL;
-    }
+    tail->next = NULL;
 }
 void insert(int val, int pos){
     if(pos<0){
@@ -87,6 +86,20 @@ void printLL(){
         temp = temp->next;
     }
 }
+node* middle(){
+    if(head == NULL){
+        cout<<"list is empty"<<endl;
+        return NULL;
+    }
+        node*slow = head;
+        node*fast = head;
+        while(fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        return slow;
+    
+}
 };
 int main(){
     list l;
@@ -98,5 +111,9 @@ int main(){
     l.pop_back();
     l.pop_front();
     l.printLL();
+    node* mid = l.middle();
+    if(mid != NULL){
+        cout<<"middle element:"<<mid->data<<endl;
+    }
     return 0;
 }
